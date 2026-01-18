@@ -84,7 +84,7 @@ export class UserService implements UserHandler {
         }
         const thisUser: User = new User(users[0]);
         const passwordCorrect = await this.isPasswordCorrect(password, thisUser?.password || dummyPassword);
-        if (!thisUser.isExisting() || !passwordCorrect) {
+        if (!thisUser.password || !thisUser.isExisting() || !passwordCorrect) {
             throw new AuthenticationException('Username or password is incorrect.');
         }
         if (!thisUser.is_active) {
